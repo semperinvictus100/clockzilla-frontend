@@ -1,0 +1,14 @@
+# Clockzilla robots.txt
+# https://clockzilla.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://clockzilla.com/sitemap.xml
+
+# Block internal API routes from indexing
+Disallow: /api/
+
+# Crawl-delay for politeness (optional, respected by some bots)
+Crawl-delay: 1

@@ -1,0 +1,250 @@
+/* Clockzilla — Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(8px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes tickBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.wc-card {
+  transition: all 0.25s ease;
+}
+.wc-card:hover {
+  transform: translateY(-2px);
+}
+
+.scroll-row::-webkit-scrollbar {
+  height: 4px;
+}
+.scroll-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-row::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+  /* Main container */
+  .cz-main {
+    padding: 12px 14px 32px !important;
+  }
+
+  /* Header */
+  .cz-header {
+    flex-wrap: wrap;
+    gap: 10px !important;
+  }
+  .cz-header-logo {
+    font-size: 28px !important;
+  }
+  .cz-header img[alt="Clockzilla"] {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .cz-header-right {
+    gap: 8px !important;
+  }
+
+  /* Nav tabs */
+  .cz-nav {
+    padding: 3px !important;
+  }
+  .cz-nav button {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+  }
+
+  /* Hero card */
+  .cz-hero {
+    padding: 20px 14px 20px !important;
+    border-radius: 18px !important;
+  }
+  .cz-hero-city {
+    font-size: 24px !important;
+  }
+  .cz-hero-tz {
+    font-size: 12px !important;
+  }
+
+  /* Analog + Offset grid */
+  .cz-clock-offset-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Progress ring grid */
+  .cz-progress-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* World clock grid */
+  .cz-world-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  /* Footer */
+  .cz-footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+  }
+  .cz-footer-logo {
+    font-size: 28px !important;
+  }
+  .cz-footer-bottom {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  /* Date + meta row */
+  .cz-date-row {
+    font-size: 16px !important;
+    gap: 10px !important;
+  }
+
+  /* Stats row */
+  .cz-stats-row {
+    gap: 14px !important;
+    padding: 10px 14px !important;
+    font-size: 12px !important;
+  }
+  .cz-stats-row > div:not([style*="width: 1"]) {
+    min-width: 0;
+  }
+
+  /* Converter */
+  .cz-converter {
+    padding: 24px 16px !important;
+  }
+
+  /* Countdown */
+  .cz-countdown {
+    padding: 24px 16px !important;
+  }
+  .cz-countdown-unit {
+    min-width: 60px !important;
+  }
+  .cz-countdown-unit-val {
+    font-size: 36px !important;
+  }
+
+  /* Stopwatch + Timer cards */
+  .cz-tool-card {
+    padding: 28px 16px !important;
+  }
+
+  /* World Clock Card */
+  .wc-card {
+    min-width: 130px !important;
+    padding: 12px 14px !important;
+  }
+
+  /* Fullscreen */
+  .cz-fullscreen-tz {
+    font-size: min(2.8vw, 16px) !important;
+    padding: 0 20px !important;
+  }
+
+  /* Search bar */
+  .cz-search {
+    border-radius: 14px !important;
+  }
+  .cz-search input {
+    font-size: 14px !important;
+    padding: 12px 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cz-main {
+    padding: 10px 10px 28px !important;
+  }
+  .cz-header-logo {
+    font-size: 24px !important;
+  }
+  .cz-header img[alt="Clockzilla"] {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .cz-hero-city {
+    font-size: 20px !important;
+  }
+  .cz-footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .cz-world-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+  }
+  .cz-countdown-unit-val {
+    font-size: 28px !important;
+  }
+  .cz-date-row {
+    font-size: 14px !important;
+    gap: 6px !important;
+  }
+  .cz-stats-row {
+    gap: 10px !important;
+    padding: 10px 10px !important;
+    font-size: 11px !important;
+  }
+  /* Hide divider lines in stats row on very small screens */
+  .cz-stats-row > div[style*="width: 1"] {
+    display: none;
+  }
+  .cz-offset-big {
+    font-size: 32px !important;
+  }
+  .cz-converter select {
+    font-size: 13px !important;
+    padding: 10px 12px !important;
+  }
+  .cz-converter .cz-converter-time {
+    font-size: 20px !important;
+  }
+  .cz-converter-result {
+    font-size: 32px !important;
+  }
+  .cz-fullscreen-tz {
+    font-size: 12px !important;
+    padding: 0 16px !important;
+  }
+  .cz-stopwatch-time {
+    font-size: 40px !important;
+  }
+  .cz-timer-time {
+    font-size: 40px !important;
+  }
+  /* Calendar */
+  .cz-calendar {
+    padding: 20px 12px !important;
+  }
+  .cz-calendar-grid {
+    grid-template-columns: 28px repeat(7, 1fr) !important;
+  }
+}
