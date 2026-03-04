@@ -2,7 +2,7 @@ import Script from 'next/script';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import './globals.css';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://clockzilla.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://clockzilla.io';
 
 export const metadata = {
   // ── Core ──

@@ -2,10 +2,10 @@
  * Dynamic sitemap.xml generator
  * Next.js will serve this at /sitemap.xml automatically.
  * 
- * UPDATE: Replace 'https://clockzilla.com' with your actual domain.
+ * UPDATE: Replace 'https://clockzilla.io' with your actual domain.
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://clockzilla.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://clockzilla.io';
 
 export default function sitemap() {
   const now = new Date().toISOString();

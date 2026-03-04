@@ -1,11 +1,11 @@
 # Clockzilla robots.txt
-# https://clockzilla.com/robots.txt
+# https://clockzilla.io/robots.txt
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://clockzilla.com/sitemap.xml
+Sitemap: https://clockzilla.io/sitemap.xml
 
 # Block internal API routes from indexing
 Disallow: /api/
