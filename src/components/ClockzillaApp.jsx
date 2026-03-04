@@ -2850,6 +2850,7 @@ function AdPlaceholder({ slot, t, style = {} }) {
 /* ══════════ MAIN ══════════ */
 export default function ClockzillaApp() {
   const { t: tr, dir, lang } = useI18n();
+  const [mounted, setMounted] = useState(false);
   const [now, setNow] = useState(new Date());
   const [tab, setTab] = useState("clock");
   const [selectedTZ, setSelectedTZ] = useState(null);
@@ -2862,8 +2863,14 @@ export default function ClockzillaApp() {
   const sync = useTimeSync();
   const userLoc = useUserLocation();
 
+  useEffect(() => { setMounted(true); }, []);
   useEffect(() => { const id = setInterval(() => setNow(new Date()), 50); return () => clearInterval(id); }, []);
   useEffect(() => { const id = setInterval(() => setQuoteIdx(i => (i + 1) % QUOTES.length), 12000); return () => clearInterval(id); }, []);
+
+  // Prevent hydration mismatch — show nothing until client-side mount
+  if (!mounted) {
+    return <div style={{ minHeight: "100vh", background: THEMES.earth.bg }} />;
+  }
 
   const accurateNow = sync.offset !== null ? new Date(now.getTime() + sync.offset) : now;
   const displayDate = selectedTZ
