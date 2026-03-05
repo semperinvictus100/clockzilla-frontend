@@ -2761,7 +2761,7 @@ function SearchResultCard({ city, t, accurateNow, onClose }) {
  * 2. Add your site and get approved
  * 3. Replace the ad-slot values below with your real ad unit IDs
  * 4. Add the AdSense script to layout.js:
- *    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossOrigin="anonymous" />
+ *    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7108121674893713" crossOrigin="anonymous" />
  *
  * Ad Slot Locations:
  *   slot-1 : Below nav, above search (Leaderboard 728×90)
@@ -2774,7 +2774,7 @@ function SearchResultCard({ city, t, accurateNow, onClose }) {
 const AD_CONFIG = {
   enabled: true, // Set to false to hide all ads
   // Replace with your real Google AdSense publisher ID
-  publisherId: "ca-pub-XXXXXXXXXXXXXXXX",
+  publisherId: "ca-pub-7108121674893713",
   slots: {
     "slot-1": { id: "1234567890", format: "horizontal",  label: "Leaderboard",  w: 728, h: 90  },
     "slot-2": { id: "2345678901", format: "rectangle",   label: "Rectangle",    w: 336, h: 280 },
@@ -2785,11 +2785,22 @@ const AD_CONFIG = {
 };
 
 function AdPlaceholder({ slot, t, style = {} }) {
+  const adRef = useRef(null);
+  const pushed = useRef(false);
+
+  useEffect(() => {
+    if (!AD_CONFIG.enabled || !adRef.current || pushed.current) return;
+    try {
+      if (typeof window !== "undefined" && window.adsbygoogle) {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        pushed.current = true;
+      }
+    } catch (e) { /* AdSense not loaded yet */ }
+  }, []);
+
   if (!AD_CONFIG.enabled) return null;
   const cfg = AD_CONFIG.slots[slot];
   if (!cfg) return null;
-
-  const isHorizontal = cfg.format === "horizontal";
 
   return (
     <div style={{
@@ -2797,51 +2808,16 @@ function AdPlaceholder({ slot, t, style = {} }) {
       padding: "8px 0",
       ...style,
     }}>
-      <div style={{
-        width: "100%",
-        maxWidth: cfg.w,
-        minHeight: cfg.h,
-        background: `${t.bgSub}`,
-        border: `1.5px dashed ${t.border}`,
-        borderRadius: 12,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 6,
-        padding: 16,
-        position: "relative",
-        overflow: "hidden",
-      }}>
-        {/* 
-          ┌─────────────────────────────────────────────────┐
-          │ REPLACE THIS ENTIRE <div> WITH GOOGLE ADSENSE:  │
-          │                                                 │
-          │ <ins className="adsbygoogle"                    │
-          │   style={{ display: "block" }}                  │
-          │   data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"      │
-          │   data-ad-slot="{cfg.id}"                       │
-          │   data-ad-format="auto"                         │
-          │   data-full-width-responsive="true" />          │
-          │                                                 │
-          │ Then add in a useEffect:                        │
-          │   (window.adsbygoogle = window.adsbygoogle      │
-          │    || []).push({});                              │
-          └─────────────────────────────────────────────────┘
-        */}
-        <div style={{ fontSize: 11, fontWeight: 700, color: t.textMuted, letterSpacing: 2, textTransform: "uppercase", opacity: 0.5 }}>
-          Advertisement
-        </div>
-        <div style={{
-          width: Math.min(cfg.w - 32, isHorizontal ? 400 : 200),
-          height: isHorizontal ? 30 : 100,
-          background: `linear-gradient(135deg, ${t.border} 0%, transparent 100%)`,
-          borderRadius: 8,
-          opacity: 0.3,
-        }} />
-        <div style={{ fontSize: 10, color: t.textMuted, opacity: 0.4 }}>
-          {cfg.label} • {cfg.w}×{cfg.h}
-        </div>
+      <div style={{ width: "100%", maxWidth: cfg.w, minHeight: cfg.h, overflow: "hidden" }}>
+        <ins
+          ref={adRef}
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-client={AD_CONFIG.publisherId}
+          data-ad-slot={cfg.id}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
       </div>
     </div>
   );

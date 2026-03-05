@@ -43,8 +43,8 @@ export const metadata = {
 
   // ── Open Graph (Facebook, LinkedIn, etc.) ──
   openGraph: {
-    title: 'Clockzilla — Accurate World Time',
-    description: 'Accurate world time with 150,000+ cities. Timezone converter, sunrise & sunset, world clocks, and more in 58 languages.',
+    title: 'Clockzilla — Accurate World Time for 150K+ Cities',
+    description: 'Free world clock with NTP-synced time for 150,000+ cities. Timezone converter, sunrise & sunset, world clocks, stopwatch, timer, and more in 58 languages.',
     url: SITE_URL,
     siteName: 'Clockzilla',
     images: [
@@ -63,8 +63,8 @@ export const metadata = {
   // ── Twitter Card ──
   twitter: {
     card: 'summary_large_image',
-    title: 'Clockzilla — Accurate World Time',
-    description: 'Accurate world time with 150,000+ cities. 58 languages.',
+    title: 'Clockzilla — Accurate World Time for 150K+ Cities',
+    description: 'Free NTP-synced world clock for 150,000+ cities. Timezone converter, sunrise & sunset, and more in 58 languages.',
     images: ['/og-image.png'],
     creator: '@clockzilla',
   },
@@ -169,17 +169,15 @@ export default function RootLayout({ children }) {
          * ═══════════════════════════════════════════════════════
          * GOOGLE ADSENSE
          * ═══════════════════════════════════════════════════════
-         * Replace ca-pub-XXXXXXXXXXXXXXXX with your real publisher ID
-         * Uncomment when you have an approved AdSense account
+         * Replace ca-pub-7108121674893713 with your real publisher ID
+         * AdSense is active with publisher ID ca-pub-7108121674893713
          */}
-        {/* 
         <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7108121674893713"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        */}
 
         {/*
          * ═══════════════════════════════════════════════════════
@@ -200,7 +198,7 @@ export default function RootLayout({ children }) {
         {/*
         <Script
           id="google-funding-choices"
-          src="https://fundingchoicesmessages.google.com/i/ca-pub-XXXXXXXXXXXXXXXX?ers=1"
+          src="https://fundingchoicesmessages.google.com/i/ca-pub-7108121674893713?ers=1"
           strategy="afterInteractive"
         />
         <Script id="google-fc-init" strategy="afterInteractive">
