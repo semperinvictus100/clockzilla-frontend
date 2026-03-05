@@ -2824,7 +2824,7 @@ function AdPlaceholder({ slot, t, style = {} }) {
 }
 
 /* ══════════ MAIN ══════════ */
-export default function ClockzillaApp() {
+export default function ClockzillaApp({ initialCity = null }) {
   const { t: tr, dir, lang } = useI18n();
   const [mounted, setMounted] = useState(false);
   const [now, setNow] = useState(new Date());
@@ -2842,6 +2842,18 @@ export default function ClockzillaApp() {
   useEffect(() => { setMounted(true); }, []);
   useEffect(() => { const id = setInterval(() => setNow(new Date()), 50); return () => clearInterval(id); }, []);
   useEffect(() => { const id = setInterval(() => setQuoteIdx(i => (i + 1) % QUOTES.length), 12000); return () => clearInterval(id); }, []);
+
+  // Auto-select city from URL (e.g., /time/new-york)
+  useEffect(() => {
+    if (!initialCity || selectedTZ) return;
+    const cityName = initialCity.replace(/-/g, ' ');
+    searchCities(cityName, 1).then(results => {
+      if (results && results.length > 0) {
+        const c = results[0];
+        setSelectedTZ({ city: c.city, tz: c.tz, emoji: "", country: c.country, state: c.state, lat: c.lat, lng: c.lng });
+      }
+    }).catch(() => {});
+  }, [initialCity]);
 
   // Prevent hydration mismatch — show nothing until client-side mount
   if (!mounted) {

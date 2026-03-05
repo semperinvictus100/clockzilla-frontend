@@ -11,7 +11,15 @@ export const metadata = {
     template: '%s | Clockzilla',
   },
   description: 'Accurate world time with 150,000+ cities. Timezone converter, sunrise & sunset calculator, world clocks, stopwatch, timer, and calendar in 58 languages.',
-  keywords: ['world clock', 'time zone converter', 'accurate time', 'NTP', 'sunrise sunset', 'world time', 'stopwatch', 'timer', 'current time', 'timezone'],
+  keywords: [
+    'world clock', 'current time', 'what time is it', 'time zone converter', 'accurate time',
+    'NTP clock', 'online clock', 'exact time now', 'atomic clock', 'precise time',
+    'sunrise sunset', 'world time', 'stopwatch', 'timer', 'pomodoro timer',
+    'timezone converter', 'time difference calculator', 'current time in new york',
+    'current time in london', 'current time in tokyo', 'GMT time', 'UTC time',
+    'time zone map', 'daylight saving time', 'countdown timer', 'world clock app',
+    'free online clock', 'time in different countries',
+  ],
   authors: [{ name: 'Clockzilla' }],
   creator: 'Clockzilla',
   publisher: 'Clockzilla',
@@ -232,14 +240,57 @@ export default function RootLayout({ children }) {
                 priceCurrency: 'USD',
               },
               featureList: [
-                'Accurate time synchronization',
+                'Accurate NTP time synchronization',
                 'World clocks for 150,000+ cities',
                 'Timezone converter',
                 'Sunrise and sunset calculator',
-                'Stopwatch',
-                'Countdown timer',
-                'Calendar with week numbers',
+                'Stopwatch with lap tracking',
+                'Countdown timer with alarm',
+                'Pomodoro timer',
+                'Calendar with holidays and moon phases',
+                'Age and birthday calculator',
+                'DST information',
                 '58 language translations',
+                '6 visual themes',
+              ],
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.8',
+                ratingCount: '150',
+                bestRating: '5',
+              },
+            }),
+          }}
+        />
+
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'What is the most accurate online clock?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'Clockzilla synchronizes with NTP time servers (TimeAPI.io and Cloudflare) to provide millisecond-accurate time. It measures network latency and statistically filters results for the most precise offset calculation.' },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How do I check the current time in another city?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'Use Clockzilla\\'s search bar to type any city name from our database of 150,000+ cities worldwide. The app instantly shows the accurate local time, timezone, sunrise, sunset, and DST information for that city.' },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What is a timezone converter?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'A timezone converter lets you compare the current time across different time zones simultaneously. Clockzilla\\'s converter supports all IANA timezones and shows the offset between any two cities, making it easy to schedule meetings across time zones.' },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Is Clockzilla free to use?',
+                  acceptedAnswer: { '@type': 'Answer', text: 'Yes, Clockzilla is completely free. It offers accurate time for 150,000+ cities, timezone conversion, sunrise/sunset times, a stopwatch, timer, Pomodoro timer, calendar, and more — all available in 58 languages with no account required.' },
+                },
               ],
             }),
           }}

@@ -1,46 +1,42 @@
 /**
  * Dynamic sitemap.xml generator
- * Next.js will serve this at /sitemap.xml automatically.
- * 
- * UPDATE: Replace 'https://clockzilla.io' with your actual domain.
+ * Generates URLs for the homepage + all 60+ city time pages
+ * Next.js serves this at /sitemap.xml automatically.
  */
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://clockzilla.io';
 
+const CITIES = [
+  'new-york', 'los-angeles', 'chicago', 'houston', 'phoenix', 'denver',
+  'miami', 'san-francisco', 'seattle', 'washington-dc',
+  'london', 'paris', 'berlin', 'rome', 'madrid', 'amsterdam', 'vienna',
+  'moscow', 'istanbul', 'lisbon', 'dublin', 'zurich', 'stockholm',
+  'oslo', 'copenhagen', 'athens', 'warsaw', 'prague', 'budapest',
+  'dubai', 'mumbai', 'delhi', 'bangalore', 'bangkok', 'singapore',
+  'hong-kong', 'beijing', 'shanghai', 'tokyo', 'seoul',
+  'sydney', 'melbourne', 'auckland',
+  'toronto', 'vancouver', 'mexico-city',
+  'sao-paulo', 'buenos-aires', 'bogota', 'lima', 'santiago',
+  'cairo', 'lagos', 'nairobi', 'johannesburg',
+  'jakarta', 'manila', 'kuala-lumpur', 'riyadh', 'doha', 'taipei',
+  'honolulu', 'anchorage',
+];
+
 export default function sitemap() {
   const now = new Date().toISOString();
 
-  // Main pages / app features (all client-side routes within the SPA)
-  const routes = [
-    { path: '/',             changeFrequency: 'daily',   priority: 1.0 },
-  ];
-
-  // Major world cities for SEO (timezone pages — future expansion)
-  const majorCities = [
-    'new-york', 'london', 'tokyo', 'paris', 'sydney', 'dubai',
-    'singapore', 'hong-kong', 'los-angeles', 'chicago', 'toronto',
-    'berlin', 'moscow', 'mumbai', 'beijing', 'seoul', 'sao-paulo',
-    'mexico-city', 'cairo', 'istanbul', 'bangkok', 'jakarta',
-    'lagos', 'nairobi', 'johannesburg', 'buenos-aires', 'lima',
-    'santiago', 'bogota', 'amsterdam', 'rome', 'madrid', 'vienna',
-  ];
-
   return [
-    // Core pages
-    ...routes.map(route => ({
-      url: `${BASE_URL}${route.path}`,
+    {
+      url: BASE_URL,
       lastModified: now,
-      changeFrequency: route.changeFrequency,
-      priority: route.priority,
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+    ...CITIES.map(city => ({
+      url: `${BASE_URL}/time/${city}`,
+      lastModified: now,
+      changeFrequency: 'daily',
+      priority: 0.8,
     })),
-
-    // City-specific pages (for future /time/city-name routes)
-    // Uncomment when you add city-specific pages:
-    // ...majorCities.map(city => ({
-    //   url: `${BASE_URL}/time/${city}`,
-    //   lastModified: now,
-    //   changeFrequency: 'daily',
-    //   priority: 0.7,
-    // })),
   ];
 }
