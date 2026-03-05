@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Allow fetching from your backend API
   async rewrites() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
     return [
+      {
+        source: '/ads.txt',
+        destination: '/api/ads-txt',
+      },
       {
         source: '/api/cities/:path*',
         destination: `${apiUrl}/api/cities/:path*`,
@@ -30,7 +33,6 @@ const nextConfig = {
       },
     ];
   },
-  // SEO and performance
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
