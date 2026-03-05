@@ -103,6 +103,9 @@ export const metadata = {
   },
 
   // ── Verification (add your IDs after setup) ──
+  other: {
+    'google-adsense-account': 'ca-pub-7108121674893713',
+  },
   // verification: {
   //   google: 'your-google-site-verification-id',
   //   yandex: 'your-yandex-verification-id',
